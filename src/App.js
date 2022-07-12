@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  Box,
+  Grommet,
+} from "grommet";
+import React, { useState } from "react";
+import { Landing, AppBar, SideBar, Login } from "./components";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+const theme = {
+  global: {
+    font: {
+      family: "Chakra Petch",
+      size: "18px",
+      height: "20px",
+    },
+  },
+};
+
 
 function App() {
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={theme} full>
+      <Box fill>
+      <BrowserRouter>
+        <AppBar />
+          <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
+            <SideBar showSidebar={showSidebar}/>
+              <Routes>
+                <Route path="/" element={<Landing />}>
+
+                </Route>
+                <Route path="/login" element={<Login />} />
+              </Routes>
+            <SideBar showSidebar={showSidebar}/>
+        </Box>
+      </BrowserRouter>
+    </Box>
+  </Grommet>
   );
 }
 
