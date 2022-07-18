@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   Box,
   Button,
@@ -9,12 +10,32 @@ import {
   Card,
   Text,
 } from "grommet";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Chat } from "grommet-icons";
+import { AppContext } from "../context/app-context";
 
-function Landing() {
-  const [email, setEmail] = useState({});
-  const [password, setPassword] = useState({});
+function Login() {
+  const [form, setForm] = useState({});
+
+  const [state, dispatch] = useContext(AppContext);
+
+  // Login Effect
+  const onLogin = async () => {
+  
+    await axios
+      .post("/accounts/login", form)
+      .then(function (response) {
+        const { token } = response.data.data;
+        dispatch({
+          type: 'SET_TOKEN',
+          payload: token,
+        })
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <Box flex align="center" justify="center" background="#535865">
@@ -38,9 +59,9 @@ function Landing() {
         </Heading>
         <Box margin="medium">
           <Form
-            value={email}
-            onChange={(nextValue) => setEmail(nextValue)}
-            onReset={() => setEmail({})}
+            value={form}
+            onChange={(nextValue) => setForm(nextValue)}
+            onReset={() => setForm({})}
             onSubmit={({ value }) => {}}
           >
             <FormField name="email" htmlFor="email" label="Email">
@@ -63,7 +84,7 @@ function Landing() {
             size="large"
             label="Login"
             margin="medium"
-            // onClick={() => setShowSidebar(!showSidebar)}
+            onClick={() => onLogin()}
           />
         </Box>
       </Card>
@@ -71,4 +92,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default Login;

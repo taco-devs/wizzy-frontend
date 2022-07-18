@@ -3,7 +3,9 @@ import {
     Heading,
     Anchor,
   } from "grommet";
-  import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useContext } from 'react'
+import { AppContext } from "../context/app-context";
   
 const AppBarContainer = (props) => (
     <Box
@@ -21,6 +23,7 @@ const AppBarContainer = (props) => (
   
 
 const AppBar = function() {
+
     return (
         <AppBarContainer>
           <Box>

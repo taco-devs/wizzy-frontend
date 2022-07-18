@@ -1,14 +1,8 @@
-import {
-  Box,
-  Grommet,
-} from "grommet";
+import { Box, Grommet } from "grommet";
 import React, { useState } from "react";
 import { Landing, AppBar, SideBar, Login } from "./components";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { AppContextProvider } from "./context/app-context";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const theme = {
   global: {
@@ -20,29 +14,27 @@ const theme = {
   },
 };
 
-
 function App() {
-
   const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <Grommet theme={theme} full>
-      <Box fill>
-      <BrowserRouter>
-        <AppBar />
-          <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
-            <SideBar showSidebar={showSidebar}/>
+      <AppContextProvider>
+        <Box fill>
+          <BrowserRouter>
+            <AppBar />
+            <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
+              <SideBar showSidebar={showSidebar} />
               <Routes>
-                <Route path="/" element={<Landing />}>
-
-                </Route>
+                <Route path="/" element={<Landing />}></Route>
                 <Route path="/login" element={<Login />} />
               </Routes>
-            <SideBar showSidebar={showSidebar}/>
+              <SideBar showSidebar={showSidebar} />
+            </Box>
+          </BrowserRouter>
         </Box>
-      </BrowserRouter>
-    </Box>
-  </Grommet>
+      </AppContextProvider>
+    </Grommet>
   );
 }
 
