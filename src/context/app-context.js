@@ -4,7 +4,8 @@ import React, { useReducer, createContext } from "react";
 export const AppContext = createContext();
 
 const initialState = {
-  authToken: !!localStorage.getItem('auth-token'),
+  authToken: localStorage.getItem('auth-token') || null,
+  isAuth: !!localStorage.getItem('auth-token'),
   loading: false,
   error: null
 };
@@ -15,7 +16,14 @@ const reducer = (state, action) => {
       localStorage.setItem('auth-token', action.payload);
       return {
         authToken: action.payload,
+        isAuth: true,
       };
+    case "LOGOUT":
+      localStorage.removeItem('auth-token');
+      return {
+        authToken: null,
+        isAuth: false,
+      }
     default:
       throw new Error();
   }
@@ -25,7 +33,6 @@ const reducer = (state, action) => {
 export const AppContextProvider = props => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
   return (
     <AppContext.Provider value={[state, dispatch]}>
       {props.children}

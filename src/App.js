@@ -20,19 +20,19 @@ function App() {
   return (
     <Grommet theme={theme} full>
       <AppContextProvider>
-        <Box fill>
-          <BrowserRouter>
-            <AppBar />
-            <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
-              <SideBar showSidebar={showSidebar} />
-              <Routes>
-                <Route path="/" element={<Landing />}></Route>
-                <Route path="/login" element={<Login />} />
-              </Routes>
-              <SideBar showSidebar={showSidebar} />
-            </Box>
-          </BrowserRouter>
-        </Box>
+      <Box fill>
+        <BrowserRouter>
+          <AppBar />
+          <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
+            <SideBar showSidebar={showSidebar} />
+            <Routes>
+              <Route path="/" element={<Landing />}></Route>
+              <Route path="/login" element={<Login />} />
+            </Routes>
+            <SideBar showSidebar={showSidebar} />
+          </Box>
+        </BrowserRouter>
+      </Box>
       </AppContextProvider>
     </Grommet>
   );
