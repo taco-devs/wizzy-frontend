@@ -56,7 +56,7 @@ function Landing() {
           </Paragraph>
         </Box>
         <Box>
-          <Link to="/login">
+          <Link to="/ask">
             <Button
               primary
               color="#149414"

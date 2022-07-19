@@ -1,6 +1,6 @@
 import { Box, Grommet } from "grommet";
 import React, { useState } from "react";
-import { Landing, AppBar, SideBar, Login, NoAuthRoute } from "./components";
+import { Landing, AppBar, SideBar, Login, Ask, NoAuthRoute, AuthRoute, } from "./components";
 import { AppContextProvider } from "./context/app-context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -33,6 +33,14 @@ function App() {
                     <NoAuthRoute>
                       <Login />
                     </NoAuthRoute>
+                  }
+                />
+                <Route
+                  path="/ask"
+                  element={
+                    <AuthRoute>
+                      <Ask />
+                    </AuthRoute>
                   }
                 />
               </Routes>
