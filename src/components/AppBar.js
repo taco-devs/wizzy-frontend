@@ -2,7 +2,6 @@ import { Box, Heading, Anchor } from "grommet";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../context/app-context";
-import axios from "axios";
 
 const AppBarContainer = (props) => (
   <Box
