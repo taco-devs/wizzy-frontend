@@ -9,13 +9,13 @@ import {
   Image,
   Card,
   Text,
-  Anchor
+  Anchor,
 } from "grommet";
 import React, { useState, useContext } from "react";
 import { Chat } from "grommet-icons";
 import { AppContext } from "../context/app-context";
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const [form, setForm] = useState({});
@@ -25,26 +25,26 @@ function SignUp() {
 
   // Login Effect
   const onSignUp = async () => {
-
     console.log(form);
 
-    if (!form.email || !form.confirm || !form.password) return alert('Incomplete fields');
+    if (!form.email || !form.confirm || !form.password)
+      return alert("Incomplete fields");
     if (form.password !== form.confirm) return alert("Passwords must match");
 
     const signup = {
       email: form.email,
       password: form.password,
-    }
-  
+    };
+
     await axios
       .post("/accounts/register", signup)
       .then(function (response) {
         console.log(response);
-        alert('Succesfull Sign Up');
-        navigate('/login', { replace: true });
+        alert("Succesfull Sign Up");
+        navigate("/login", { replace: true });
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
         alert(error);
       });
   };
@@ -60,11 +60,7 @@ function SignUp() {
         }}
       >
         <Box height="small" width="small">
-          <Image
-            style={{ filter: "invert(1)" }}
-            fit="cover"
-            src="https://cdn3.iconfinder.com/data/icons/robotics-automation-and-digital-factory/32/friendly_robot_w-_headset-1024.png"
-          />
+          <Image fit="cover" src={require("../assets/wizzy.png")} />
         </Box>
         <Heading level="3" margin="small">
           Sign Up
@@ -86,12 +82,12 @@ function SignUp() {
                 name="password"
               />
             </FormField>
-            <FormField name="confirm" htmlFor="password" label="Repeat Password">
-              <TextInput
-                type="password"
-                id="confirm-input-id"
-                name="confirm"
-              />
+            <FormField
+              name="confirm"
+              htmlFor="password"
+              label="Repeat Password"
+            >
+              <TextInput type="password" id="confirm-input-id" name="confirm" />
             </FormField>
           </Form>
         </Box>

@@ -9,12 +9,12 @@ import {
   Image,
   Card,
   Text,
-  Anchor
+  Anchor,
 } from "grommet";
 import React, { useState, useContext } from "react";
 import { Chat } from "grommet-icons";
 import { AppContext } from "../context/app-context";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Login() {
   const [form, setForm] = useState({});
@@ -48,11 +48,7 @@ function Login() {
         }}
       >
         <Box height="small" width="small">
-          <Image
-            style={{ filter: "invert(1)" }}
-            fit="cover"
-            src="https://cdn3.iconfinder.com/data/icons/robotics-automation-and-digital-factory/32/friendly_robot_w-_headset-1024.png"
-          />
+          <Image fit="cover" src={require("../assets/wizzy.png")} />
         </Box>
         <Heading level="3" margin="small">
           Log In
@@ -90,7 +86,11 @@ function Login() {
         <Box margin="medium">
           <Box>
             <Link to="/signup">
-              <Anchor weight="normal" label="I don't have an account" color="white" />
+              <Anchor
+                weight="normal"
+                label="I don't have an account"
+                color="white"
+              />
             </Link>
           </Box>
         </Box>

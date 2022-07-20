@@ -2,6 +2,7 @@ import { Box, Button, Heading, Paragraph, Image, Card, Text } from "grommet";
 
 import { Chat } from "grommet-icons";
 import { Link } from "react-router-dom";
+import  Spritesheet  from "react-responsive-spritesheet";
 
 function Landing() {
   return (
@@ -15,10 +16,14 @@ function Landing() {
         }}
       >
         <Box height="small" width="small">
-          <Image
-            style={{ filter: "invert(1)" }}
-            fit="cover"
-            src="https://cdn3.iconfinder.com/data/icons/robotics-automation-and-digital-factory/32/friendly_robot_w-_headset-1024.png"
+          <Spritesheet
+            image={require("../assets/wizzy_hand.png")}
+            widthFrame={256}
+            heightFrame={256}
+            steps={12}
+            fps={12}
+            autoplay={true}
+            loop={true}
           />
         </Box>
         <Heading level="3" margin="small">
