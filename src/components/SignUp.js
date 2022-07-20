@@ -14,26 +14,38 @@ import {
 import React, { useState, useContext } from "react";
 import { Chat } from "grommet-icons";
 import { AppContext } from "../context/app-context";
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-function Login() {
+function SignUp() {
   const [form, setForm] = useState({});
 
   const [state, dispatch] = useContext(AppContext);
+  const navigate = useNavigate();
 
   // Login Effect
-  const onLogin = async () => {
+  const onSignUp = async () => {
+
+    console.log(form);
+
+    if (!form.email || !form.confirm || !form.password) return alert('Incomplete fields');
+    if (form.password !== form.confirm) return alert("Passwords must match");
+
+    const signup = {
+      email: form.email,
+      password: form.password,
+    }
+  
     await axios
-      .post("/accounts/login", form)
+      .post("/accounts/register", signup)
       .then(function (response) {
-        const { token } = response.data.data;
-        dispatch({
-          type: "SET_TOKEN",
-          payload: token,
-        });
+        console.log(response);
+        alert('Succesfull Sign Up');
+        navigate('/login', { replace: true });
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error)
+        alert(error);
       });
   };
 
@@ -55,7 +67,7 @@ function Login() {
           />
         </Box>
         <Heading level="3" margin="small">
-          Log In
+          Sign Up
         </Heading>
         <Box margin="small">
           <Form
@@ -74,6 +86,13 @@ function Login() {
                 name="password"
               />
             </FormField>
+            <FormField name="confirm" htmlFor="password" label="Repeat Password">
+              <TextInput
+                type="password"
+                id="confirm-input-id"
+                name="confirm"
+              />
+            </FormField>
           </Form>
         </Box>
         <Box>
@@ -82,15 +101,15 @@ function Login() {
             color="#149414"
             reverse
             size="large"
-            label="Login"
+            label="Sign Up"
             margin="medium"
-            onClick={() => onLogin()}
+            onClick={() => onSignUp()}
           />
         </Box>
         <Box margin="medium">
           <Box>
-            <Link to="/signup">
-              <Anchor weight="normal" label="I don't have an account" color="white" />
+            <Link to="/login">
+              <Anchor weight="normal" label="I have an account" color="white" />
             </Link>
           </Box>
         </Box>
@@ -99,4 +118,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;
