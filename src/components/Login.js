@@ -19,11 +19,11 @@ import { Link } from "react-router-dom";
 function Login() {
   const [form, setForm] = useState({});
 
-  const [state, dispatch] = useContext(AppContext);
+  const [appState, dispatch] = useContext(AppContext);
 
   // Login Effect
   const onLogin = async () => {
-    await axios
+    await appState.axios
       .post("/accounts/login", form)
       .then(function (response) {
         const { token } = response.data.data;

@@ -10,7 +10,6 @@ import {
 import { useState, useContext } from "react";
 import { AppContext } from "../context/app-context";
 import { Chat } from "grommet-icons";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Spritesheet from "react-responsive-spritesheet";
 
@@ -19,24 +18,19 @@ function Ask() {
   const [value, setValue] = useState("");
   const [loading = false, setLoading] = useState(false);
 
-
   const navigate = useNavigate();
 
   const getAnswer = async () => {
-    setLoading(true);
 
     if (!value || value.length < 1) return;
 
+    setLoading(true);
+
     // Get answer logic
-    await axios
+    await appState.axios
       .post(
         "/questions",
         { question: value, author: "test@example.com" },
-        {
-          headers: {
-            "auth-token": appState.authToken,
-          },
-        }
       )
       .then(function (response) {
         console.log(response);
@@ -44,7 +38,6 @@ function Ask() {
         const question = data.result[0];
         const route = `/question/${question.slug}`;
         alert("You'll be redirected to the question");
-        setLoading(false);
         navigate(route, { replace: true });
       })
       .catch(function (error) {
@@ -69,6 +62,7 @@ function Ask() {
         ) : (
           <Image fit="cover" src={require("../assets/wizzy.png")} />
         )}
+
       </Box>
       <Card
         align="center"
@@ -95,6 +89,7 @@ function Ask() {
             style={{
               "background-color": "#4E5360",
             }}
+            disabled={loading}
             fill
             plain
             resize={false}

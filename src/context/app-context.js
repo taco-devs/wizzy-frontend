@@ -1,9 +1,15 @@
 import React, { useReducer, createContext } from "react";
+import axios from "axios";
 
 // Create Context Object
 export const AppContext = createContext();
 
+// Axios Initializer
+axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.headers.common['auth-token'] = localStorage.getItem('auth-token') || null;
+
 const initialState = {
+  axios,
   authToken: localStorage.getItem('auth-token') || null,
   isAuth: !!localStorage.getItem('auth-token'),
   loading: false,
@@ -13,14 +19,18 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "SET_TOKEN":
+      axios.defaults.headers.common['auth-token'] = action.payload;
       localStorage.setItem('auth-token', action.payload);
       return {
+        ...state,
         authToken: action.payload,
         isAuth: true,
       };
     case "LOGOUT":
       localStorage.removeItem('auth-token');
+      axios.defaults.headers.common['auth-token'] = null;
       return {
+        ...state,
         authToken: null,
         isAuth: false,
       }

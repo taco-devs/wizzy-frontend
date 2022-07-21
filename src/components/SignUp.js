@@ -25,7 +25,6 @@ function SignUp() {
 
   // Login Effect
   const onSignUp = async () => {
-    console.log(form);
 
     if (!form.email || !form.confirm || !form.password)
       return alert("Incomplete fields");
@@ -36,10 +35,9 @@ function SignUp() {
       password: form.password,
     };
 
-    await axios
+    await state.axios
       .post("/accounts/register", signup)
       .then(function (response) {
-        console.log(response);
         alert("Succesfull Sign Up");
         navigate("/login", { replace: true });
       })

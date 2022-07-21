@@ -12,12 +12,13 @@ import { useState, useContext } from "react";
 import { AppContext } from "../context/app-context";
 import { Chat } from "grommet-icons";
 import axios from "axios";
+import Spritesheet from "react-responsive-spritesheet";
 
 function Ask() {
   const [appState, appDispatch] = useContext(AppContext);
   const [value, setValue] = useState("");
 
-/*   const getAnswer = async () => {
+  /*   const getAnswer = async () => {
 
     if (!value || value.length < 1) return;
 
@@ -38,6 +39,26 @@ function Ask() {
 
   return (
     <Box flex align="center" justify="center" background="#535865">
+      <Box height="small" width="small">
+        <Box direction="row" justify="between" align="end">
+          <Box flex>
+            <Heading level="3" margin="small">
+              Does alien's love ketchup?
+            </Heading>
+          </Box>
+          <Box flex>
+            <Spritesheet
+              image={require("../assets/wizzy_hand.png")}
+              widthFrame={256}
+              heightFrame={256}
+              steps={12}
+              fps={12}
+              autoplay={true}
+              loop={true}
+            />
+          </Box>
+        </Box>
+      </Box>
       <Card
         align="center"
         background="#2e3138"
@@ -47,17 +68,12 @@ function Ask() {
         }}
         pad="1em"
       >
-      {/* <Box height="small" width="small">
-          <Image
+        <Box>
+          <Heading level="3" margin="small">
+            Question Placeholder
+          </Heading>
+        </Box>
 
-            style={{ filter: "invert(1)" }}
-            fit="cover"
-            src="https://cdn3.iconfinder.com/data/icons/robotics-automation-and-digital-factory/32/friendly_robot_w-_headset-1024.png"
-          />
-        </Box> */}
-        <Heading level="3" margin="small">
-          Question Placeholder
-        </Heading>
         <Box fill>
           <Text margin="xxsmall">
             <b style={{ color: "#149414" }}>{"> "}</b>
