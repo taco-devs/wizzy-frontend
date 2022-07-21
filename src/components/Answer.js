@@ -22,7 +22,7 @@ function Answer() {
 
   useEffect(() => {
     getQuestion();
-  }, [])
+  }, [id])
 
   const getQuestion = async () => {
 
@@ -31,7 +31,7 @@ function Answer() {
       .get(`/questions/${id}`)
       .then(function (response) {
         const {data} = response;
-        console.log(data)
+
         setQuestion(data);
       })
       .catch(function (error) {

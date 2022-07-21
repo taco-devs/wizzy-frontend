@@ -1,3 +1,4 @@
+import './App.css'
 import { Box, Grommet } from "grommet";
 import React, { useState } from "react";
 import { Landing, AppBar, SideBar, Login, SignUp, Ask, NoAuthRoute, AuthRoute, Answer } from "./components";
@@ -15,7 +16,7 @@ const theme = {
 };
 
 function App() {
-  const [showSidebar, setShowSidebar] = useState(false);
+
 
   return (
     <Grommet theme={theme} full>
@@ -24,7 +25,7 @@ function App() {
           <BrowserRouter>
             <AppBar />
             <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
-              <SideBar showSidebar={showSidebar} />
+              <SideBar />
               <Routes>
                 <Route path="/" element={<Landing />}></Route>
                 <Route
@@ -56,7 +57,6 @@ function App() {
                   element={<Answer />}
                 />
               </Routes>
-              <SideBar showSidebar={showSidebar} />
             </Box>
           </BrowserRouter>
         </Box>

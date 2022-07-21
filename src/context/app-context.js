@@ -12,6 +12,8 @@ const initialState = {
   axios,
   authToken: localStorage.getItem('auth-token') || null,
   isAuth: !!localStorage.getItem('auth-token'),
+  showSideBar: false,
+  questionsHistory: [],
   loading: false,
   error: null
 };
@@ -33,6 +35,16 @@ const reducer = (state, action) => {
         ...state,
         authToken: null,
         isAuth: false,
+      }
+    case "SET_QUESTIONS_HISTORY":
+      return {
+        ...state,
+        questionsHistory: action.payload
+      }
+    case "TOGGLE_SIDEBAR":
+      return {
+        ...state,
+        showSideBar: !state.showSideBar
       }
     default:
       throw new Error();

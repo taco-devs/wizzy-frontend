@@ -1,7 +1,9 @@
-import { Box, Heading, Anchor } from "grommet";
+import { Box, Heading, Anchor, Button } from "grommet";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../context/app-context";
+
+import { BladesVertical } from "grommet-icons";
 
 const AppBarContainer = (props) => (
   <Box
@@ -17,7 +19,7 @@ const AppBarContainer = (props) => (
   />
 );
 
-const AppBar = function () {
+const AppBar = function (props) {
   const [state, dispatch] = useContext(AppContext);
 
   const onLogout = async () => {
@@ -26,13 +28,21 @@ const AppBar = function () {
     });
   };
 
+  const toggleSideBar = async () => {
+    dispatch({
+      type: 'TOGGLE_SIDEBAR'
+    })
+  }
+
   return (
     <AppBarContainer>
       <Box>
-        {/* <Button
-              icon={<BladesVertical />}
-              onClick={() => setShowSidebar(!showSidebar)}
-            /> */}
+        {state.isAuth && (
+          <Button
+            icon={<BladesVertical />}
+            onClick={() => toggleSideBar()}
+          />
+        )}
       </Box>
 
       <Heading level="3" margin="none">

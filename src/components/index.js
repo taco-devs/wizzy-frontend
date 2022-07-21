@@ -7,6 +7,7 @@ import NoAuthRoute from './NoAuthRoute';
 import AuthRoute from "./AuthRoute";
 import Ask from './Ask';
 import Answer from './Answer';
+import QuestionPreview from './QuestionPreview';
 
 export {
   Landing,
@@ -18,4 +19,5 @@ export {
   NoAuthRoute,
   Ask,
   Answer,
+  QuestionPreview,
 };
