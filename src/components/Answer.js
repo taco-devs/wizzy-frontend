@@ -39,14 +39,24 @@ function Ask() {
 
   return (
     <Box flex align="center" justify="center" background="#535865">
-      <Box height="small" width="small">
-        <Box direction="row" justify="between" align="end">
+      <Box
+        style={{
+          width: "60%",
+        }}
+      >
+        <Box
+          flex
+          direction="row"
+          align="end"
+        >
           <Box flex>
             <Heading level="3" margin="small">
               Does alien's love ketchup?
             </Heading>
           </Box>
-          <Box flex>
+          <Box
+            flex
+          >
             <Spritesheet
               image={require("../assets/wizzy_hand.png")}
               widthFrame={256}
@@ -55,6 +65,10 @@ function Ask() {
               fps={12}
               autoplay={true}
               loop={true}
+              isResponsive={false}
+              style={{
+                alignSelf: 'flex-end'
+              }}
             />
           </Box>
         </Box>
@@ -63,16 +77,16 @@ function Ask() {
         align="center"
         background="#2e3138"
         elevation="0"
+        pad="1em"
         style={{
           width: "60%",
         }}
-        pad="1em"
       >
-        <Box>
+        {/* <Box>
           <Heading level="3" margin="small">
             Question Placeholder
           </Heading>
-        </Box>
+        </Box> */}
 
         <Box fill>
           <Text margin="xxsmall">
