@@ -8,55 +8,59 @@ import {
   Card,
   TextArea,
 } from "grommet";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AppContext } from "../context/app-context";
 import { Chat } from "grommet-icons";
 import axios from "axios";
 import Spritesheet from "react-responsive-spritesheet";
+import { useParams } from 'react-router-dom';
 
-function Ask() {
+function Answer() {
+  const { id } = useParams();
   const [appState, appDispatch] = useContext(AppContext);
-  const [value, setValue] = useState("");
+  const [question, setQuestion] = useState({});
 
-  /*   const getAnswer = async () => {
+  useEffect(() => {
+    getQuestion();
+  }, [])
 
-    if (!value || value.length < 1) return;
+  const getQuestion = async () => {
 
     // Get answer logic
-    await axios
-      .post("/questions", {question: value, author: 'test@example.com'}, {
-        headers: {
-          'auth-token': appState.authToken,
-        }
-      })
+    await appState.axios
+      .get(`/questions/${id}`)
       .then(function (response) {
-        alert('question submitted succesfully');
+        const {data} = response;
+        console.log(data)
+        setQuestion(data);
       })
       .catch(function (error) {
         alert("error creating question");
       });
-  }; */
+  };
 
   return (
     <Box flex align="center" justify="center" background="#535865">
       <Box
         style={{
-          width: "60%",
+          width: "50%",
         }}
       >
-        <Box
-          flex
-          direction="row"
-          align="end"
-        >
+        <Box flex direction="row" align="end">
           <Box flex>
-            <Heading level="3" margin="small">
-              Does alien's love ketchup?
-            </Heading>
+            <Card
+              align="center"
+              background="#40454F"
+              elevation="0"
+              pad="1em 1em 2em 1em"
+              margin="0 0 -1em 0"
+            >
+              <Heading level="4" margin="small">
+                {question && question.question}
+              </Heading>
+            </Card>
           </Box>
-          <Box
-            flex
-          >
+          <Box flex>
             <Spritesheet
               image={require("../assets/wizzy_hand.png")}
               widthFrame={256}
@@ -67,7 +71,7 @@ function Ask() {
               loop={true}
               isResponsive={false}
               style={{
-                alignSelf: 'flex-end'
+                alignSelf: "flex-end",
               }}
             />
           </Box>
@@ -79,7 +83,7 @@ function Ask() {
         elevation="0"
         pad="1em"
         style={{
-          width: "60%",
+          width: "50%",
         }}
       >
         {/* <Box>
@@ -91,7 +95,7 @@ function Ask() {
         <Box fill>
           <Text margin="xxsmall">
             <b style={{ color: "#149414" }}>{"> "}</b>
-            {"Answer Placeholder"}
+            {question && question.answer}
           </Text>
         </Box>
         {/* <Box pad="0 0 2em 0">
@@ -111,4 +115,4 @@ function Ask() {
   );
 }
 
-export default Ask;
+export default Answer;

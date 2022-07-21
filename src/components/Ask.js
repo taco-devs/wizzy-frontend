@@ -37,7 +37,6 @@ function Ask() {
         const { data } = response;
         const question = data.result[0];
         const route = `/question/${question.slug}`;
-        alert("You'll be redirected to the question");
         navigate(route, { replace: true });
       })
       .catch(function (error) {
