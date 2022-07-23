@@ -8,6 +8,7 @@ import AuthRoute from "./AuthRoute";
 import Ask from './Ask';
 import Answer from './Answer';
 import QuestionPreview from './QuestionPreview';
+import Footer from './Footer';
 
 export {
   Landing,
@@ -20,4 +21,5 @@ export {
   Ask,
   Answer,
   QuestionPreview,
+  Footer
 };

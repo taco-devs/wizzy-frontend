@@ -25,6 +25,7 @@ const QuestionPreview = function (props) {
       fill
       style={{
         minHeight: "auto",
+        height: "auto",
         direction: "ltr",
         padding: "0.5em 1em 0.5em 1em",
       }}

@@ -1,7 +1,18 @@
-import './App.css'
+import "./App.css";
 import { Box, Grommet } from "grommet";
 import React, { useState } from "react";
-import { Landing, AppBar, SideBar, Login, SignUp, Ask, NoAuthRoute, AuthRoute, Answer } from "./components";
+import {
+  Landing,
+  AppBar,
+  SideBar,
+  Login,
+  SignUp,
+  Ask,
+  NoAuthRoute,
+  AuthRoute,
+  Answer,
+  Footer,
+} from "./components";
 import { AppContextProvider } from "./context/app-context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -16,8 +27,6 @@ const theme = {
 };
 
 function App() {
-
-
   return (
     <Grommet theme={theme} full>
       <AppContextProvider>
@@ -26,37 +35,37 @@ function App() {
             <AppBar />
             <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
               <SideBar />
-              <Routes>
-                <Route path="/" element={<Landing />}></Route>
-                <Route
-                  path="/login"
-                  element={
-                    <NoAuthRoute>
-                      <Login />
-                    </NoAuthRoute>
-                  }
-                />
-                <Route
-                  path="/signup"
-                  element={
-                    <NoAuthRoute>
-                      <SignUp />
-                    </NoAuthRoute>
-                  }
-                />
-                <Route
-                  path="/ask"
-                  element={
-                    <AuthRoute>
-                      <Ask />
-                    </AuthRoute>
-                  }
-                />
-                <Route
-                  path="/question/:id"
-                  element={<Answer />}
-                />
-              </Routes>
+              <Box flex direction="column">
+                <Routes>
+                  <Route path="/" element={<Landing />}></Route>
+                  <Route
+                    path="/login"
+                    element={
+                      <NoAuthRoute>
+                        <Login />
+                      </NoAuthRoute>
+                    }
+                  />
+                  <Route
+                    path="/signup"
+                    element={
+                      <NoAuthRoute>
+                        <SignUp />
+                      </NoAuthRoute>
+                    }
+                  />
+                  <Route
+                    path="/ask"
+                    element={
+                      <AuthRoute>
+                        <Ask />
+                      </AuthRoute>
+                    }
+                  />
+                  <Route path="/question/:id" element={<Answer />} />
+                </Routes>
+                <Footer />
+              </Box>
             </Box>
           </BrowserRouter>
         </Box>

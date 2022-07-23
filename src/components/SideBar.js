@@ -1,4 +1,4 @@
-import { Box, Collapsible } from "grommet";
+import { Box, Collapsible, Text } from "grommet";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../context/app-context";
 import { QuestionPreview } from "../components";
@@ -27,7 +27,7 @@ const SideBar = function (props) {
   };
 
   return (
-    <Collapsible direction="horizontal" open={appState.showSideBar}>
+    <Collapsible direction="horizontal" open={appState.isAuth && appState.showSideBar}>
       <Box
         width="medium"
         background="#40454F"
@@ -37,9 +37,13 @@ const SideBar = function (props) {
         style={{
           overflowY: "scroll",
           direction: "rtl",
+          height: "100%",
         }}
       >
-        <Box fill>
+        <Box fill align="center" justify="center">
+          {appState.questionsHistory < 1 && (
+            <Text>You'll see your questions here</Text>
+          )}
           {appState.questionsHistory &&
             appState.questionsHistory.map((question) => {
               return <QuestionPreview question={question} />;

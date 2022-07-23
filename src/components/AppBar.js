@@ -30,18 +30,20 @@ const AppBar = function (props) {
 
   const toggleSideBar = async () => {
     dispatch({
-      type: 'TOGGLE_SIDEBAR'
-    })
-  }
+      type: "TOGGLE_SIDEBAR",
+    });
+  };
 
   return (
     <AppBarContainer>
       <Box>
         {state.isAuth && (
-          <Button
-            icon={<BladesVertical />}
-            onClick={() => toggleSideBar()}
-          />
+          <Box direction="row" align="center">
+            <Button icon={<BladesVertical />} onClick={() => toggleSideBar()} />
+            <Link to="/ask" style={{ textDecoration: "none"}}>
+              <Anchor label="Ask" color="#149414"/>
+            </Link>
+          </Box>
         )}
       </Box>
 
