@@ -21,23 +21,22 @@ function Ask() {
   const navigate = useNavigate();
 
   const getAnswer = async () => {
-
     if (!value || value.length < 1) return;
 
     setLoading(true);
 
     // Get answer logic
     await appState.axios
-      .post(
-        "/questions",
-        { question: value, author: "test@example.com" },
-      )
+      .post("/questions", { question: value, author: "test@example.com" })
       .then(function (response) {
-        console.log(response);
         const { data } = response;
         const question = data.result[0];
         const route = `/question/${question.slug}`;
-        navigate(route, { replace: true });
+        appDispatch({
+          type: 'ADD_QUESTION',
+          payload: question,
+        });
+        navigate(route, { replace: true, state: { new_question: true } });
       })
       .catch(function (error) {
         alert("error creating question");
@@ -61,7 +60,6 @@ function Ask() {
         ) : (
           <Image fit="cover" src={require("../assets/wizzy.png")} />
         )}
-
       </Box>
       <Card
         align="center"

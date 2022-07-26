@@ -34,7 +34,6 @@ function Answer() {
       .get(`/questions/${id}`)
       .then(function (response) {
         const { data } = response;
-        console.log(data);
         setQuestion(data);
 
         // Toggle animation if it's a new question
@@ -46,11 +45,12 @@ function Answer() {
   };
 
   return (
-    <>
+    <Box flex style={{minHeight: 'auto'}}>
       {question.question ? (
-        <Box flex align="center" justify="center" background="#535865">
+        <Box flex align="center" justify="center" background="#535865" pad="1em 0 1em 0">
           <Box
             style={{
+              height: 'auto',
               width: "50%",
             }}
           >
@@ -91,6 +91,7 @@ function Answer() {
             elevation="0"
             pad="1em"
             style={{
+              height: 'auto',
               width: "50%",
             }}
           >
@@ -135,7 +136,7 @@ function Answer() {
           />
         </Box>
       )}
-    </>
+    </ Box>
   );
 }
 

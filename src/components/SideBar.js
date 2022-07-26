@@ -8,7 +8,7 @@ const SideBar = function (props) {
 
   useEffect(() => {
     getAccountQuestions();
-  }, []);
+  }, [appState.isAuth]);
 
   // Login Effect
   const getAccountQuestions = async () => {

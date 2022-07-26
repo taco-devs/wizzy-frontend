@@ -37,6 +37,18 @@ function Login() {
       });
   };
 
+  // Login Effect
+  const onTwitterLogin = async () => {
+    await appState.axios
+      .get("/auth/twitter")
+      .then(function (response) {
+        console.log('success');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <Box flex align="center" justify="center" background="#535865">
       <Card
@@ -72,7 +84,7 @@ function Login() {
             </FormField>
           </Form>
         </Box>
-        <Box>
+        <Box flex>
           <Button
             primary
             color="#149414"
@@ -81,6 +93,17 @@ function Login() {
             label="Login"
             margin="medium"
             onClick={() => onLogin()}
+          />
+        </Box>
+        <Box>
+          <Button
+            primary
+            color="#1DA1F2"
+            reverse
+            size="large"
+            label="Login with Twitter"
+            style={{color: 'white'}}
+            onClick={() => window.open("http://localhost:3001/auth/twitter", "_self")}
           />
         </Box>
         <Box margin="medium">

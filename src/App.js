@@ -2,6 +2,7 @@ import "./App.css";
 import { Box, Grommet } from "grommet";
 import React, { useState } from "react";
 import {
+  Auth,
   Landing,
   AppBar,
   SideBar,
@@ -33,9 +34,9 @@ function App() {
         <Box fill>
           <BrowserRouter>
             <AppBar />
-            <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
+            <Box direction="row" flex>
               <SideBar />
-              <Box flex direction="column">
+              <Box flex direction="column" style={{overflow: 'auto'}}>
                 <Routes>
                   <Route path="/" element={<Landing />}></Route>
                   <Route
@@ -51,6 +52,14 @@ function App() {
                     element={
                       <NoAuthRoute>
                         <SignUp />
+                      </NoAuthRoute>
+                    }
+                  />
+                  <Route
+                    path="/auth"
+                    element={
+                      <NoAuthRoute>
+                        <Auth />
                       </NoAuthRoute>
                     }
                   />

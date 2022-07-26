@@ -35,11 +35,17 @@ const reducer = (state, action) => {
         ...state,
         authToken: null,
         isAuth: false,
+        questionsHistory: [],
       }
     case "SET_QUESTIONS_HISTORY":
       return {
         ...state,
         questionsHistory: action.payload
+      }
+    case "ADD_QUESTION":
+      return {
+        ...state,
+        questionsHistory: [action.payload, ...state.questionsHistory]
       }
     case "TOGGLE_SIDEBAR":
       return {

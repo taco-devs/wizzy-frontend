@@ -1,4 +1,5 @@
 import Landing from "./Landing";
+import Auth from "./Auth";
 import AppBar from "./AppBar";
 import SideBar from "./SideBar";
 import Login from './Login';
@@ -19,6 +20,7 @@ export {
   AuthRoute,
   NoAuthRoute,
   Ask,
+  Auth,
   Answer,
   QuestionPreview,
   Footer
