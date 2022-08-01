@@ -108,7 +108,7 @@ function SignUp() {
             size="large"
             label="Signup with Twitter"
             style={{color: 'white'}}
-            onClick={() => window.open(`${process.env.REACT_REACT_APP_API_URL}/auth/twitter`, "_self")}
+            onClick={() => window.open(`${process.env.REACT_APP_API_URL}/auth/twitter`, "_self")}
           />
         </Box>
         <Box margin="medium">
