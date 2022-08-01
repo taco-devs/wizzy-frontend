@@ -7,7 +7,7 @@ const SideBar = function (props) {
   const [appState, appDispatch] = useContext(AppContext);
 
   useEffect(() => {
-    getAccountQuestions();
+      getAccountQuestions();
   }, [appState.isAuth]);
 
   // Login Effect
@@ -27,7 +27,10 @@ const SideBar = function (props) {
   };
 
   return (
-    <Collapsible direction="horizontal" open={appState.isAuth && appState.showSideBar}>
+    <Collapsible
+      direction="horizontal"
+      open={appState.isAuth && appState.showSideBar}
+    >
       <Box
         width="medium"
         background="#40454F"

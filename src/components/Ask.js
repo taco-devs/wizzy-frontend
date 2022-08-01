@@ -97,13 +97,13 @@ function Ask() {
         </Box>
         <Box pad="0 0 2em 0">
           <Button
+            disabled={loading}
             primary
             color="#149414"
             reverse
             size="large"
-            label="Ask Me"
+            label="Ask"
             margin="medium"
-            icon={<Chat />}
             onClick={() => getAnswer()}
           />
         </Box>

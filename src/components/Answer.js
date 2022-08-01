@@ -45,17 +45,27 @@ function Answer() {
   };
 
   return (
-    <Box flex style={{minHeight: 'auto'}}>
+    <Box flex style={{ minHeight: "auto" }}>
       {question.question ? (
-        <Box flex align="center" justify="center" background="#535865" pad="1em 0 1em 0">
+        <Box
+          flex
+          align="center"
+          justify="center"
+          background="#535865"
+          pad="1em 0 1em 0"
+        >
           <Box
             style={{
-              height: 'auto',
+              height: "auto",
               width: "50%",
             }}
           >
             <Box flex direction="row" align="end">
               <Box flex>
+                <Box margin="10px">
+                  <Text>{question.account.username} asks: </Text>
+                </Box>
+
                 <Card
                   align="center"
                   background="#40454F"
@@ -91,7 +101,7 @@ function Answer() {
             elevation="0"
             pad="1em"
             style={{
-              height: 'auto',
+              height: "auto",
               width: "50%",
             }}
           >
@@ -136,7 +146,7 @@ function Answer() {
           />
         </Box>
       )}
-    </ Box>
+    </Box>
   );
 }
 

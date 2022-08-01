@@ -5,13 +5,16 @@ import axios from "axios";
 export const AppContext = createContext();
 
 // Axios Initializer
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.common['auth-token'] = localStorage.getItem('auth-token') || null;
+
+const QUESTION_COST = 100;
 
 const initialState = {
   axios,
   authToken: localStorage.getItem('auth-token') || null,
   isAuth: !!localStorage.getItem('auth-token'),
+  account: null,
   showSideBar: false,
   questionsHistory: [],
   loading: false,
@@ -20,6 +23,11 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "SET_ACCOUNT":
+      return {
+        ...state,
+        account: action.payload,
+      }
     case "SET_TOKEN":
       axios.defaults.headers.common['auth-token'] = action.payload;
       localStorage.setItem('auth-token', action.payload);
@@ -36,6 +44,7 @@ const reducer = (state, action) => {
         authToken: null,
         isAuth: false,
         questionsHistory: [],
+        account: null,
       }
     case "SET_QUESTIONS_HISTORY":
       return {
@@ -45,6 +54,10 @@ const reducer = (state, action) => {
     case "ADD_QUESTION":
       return {
         ...state,
+        account: {
+          ...state.account,
+          balance: state.account.balance - QUESTION_COST,
+        },
         questionsHistory: [action.payload, ...state.questionsHistory]
       }
     case "TOGGLE_SIDEBAR":

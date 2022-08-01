@@ -100,6 +100,17 @@ function SignUp() {
             onClick={() => onSignUp()}
           />
         </Box>
+        <Box>
+          <Button
+            primary
+            color="#1DA1F2"
+            reverse
+            size="large"
+            label="Signup with Twitter"
+            style={{color: 'white'}}
+            onClick={() => window.open("http://localhost:3001/auth/twitter", "_self")}
+          />
+        </Box>
         <Box margin="medium">
           <Box>
             <Link to="/login">
