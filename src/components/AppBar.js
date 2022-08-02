@@ -97,7 +97,7 @@ const AppBar = function (props) {
             label={isMobile ? '' : (state.account ? state.account.username : "")}
             items={[
               {
-                label: 'Profile'
+                label: 'Profile Settings'
               },
               {
                 label: "Logout",

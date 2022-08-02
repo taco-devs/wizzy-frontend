@@ -2,6 +2,7 @@ import { Box, Collapsible, Text } from "grommet";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../context/app-context";
 import { QuestionPreview } from "../components";
+import { isMobile } from 'react-device-detect';
 
 const SideBar = function (props) {
   const [appState, appDispatch] = useContext(AppContext);
@@ -43,7 +44,7 @@ const SideBar = function (props) {
           height: "100%",
         }}
       >
-        <Box fill align="center" justify="center">
+        <Box fill align="center" justify="center" style={{margin: isMobile ? '15em 0 0 0' : '8em 0 0 0'}}>
           {appState.questionsHistory < 1 && (
             <Text>You'll see your questions here</Text>
           )}
