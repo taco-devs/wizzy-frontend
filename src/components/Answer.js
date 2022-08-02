@@ -14,10 +14,10 @@ import { Chat } from "grommet-icons";
 import axios from "axios";
 import Spritesheet from "react-responsive-spritesheet";
 import { useParams, useLocation } from "react-router-dom";
+import { isMobile } from 'react-device-detect';
 
 function Answer() {
   const { id } = useParams();
-  const location = useLocation();
 
   const [appState, appDispatch] = useContext(AppContext);
   const [question, setQuestion] = useState({});
@@ -57,6 +57,7 @@ function Answer() {
           <Box
             style={{
               height: "auto",
+              minWidth: "400px",
               width: "50%",
             }}
           >
@@ -78,8 +79,11 @@ function Answer() {
                   </Heading>
                 </Card>
               </Box>
-              <Box flex>
-                <Spritesheet
+              <Box flex style={{maxWidth: isMobile ? '85px' : '100%'}}>
+                {isMobile ? (
+                  <Image src={require("../assets/wizzy_64.png")}/>
+                ) : (
+                  <Spritesheet
                   image={require("../assets/wizzy_hand.png")}
                   widthFrame={256}
                   heightFrame={256}
@@ -92,6 +96,8 @@ function Answer() {
                     alignSelf: "flex-end",
                   }}
                 />
+                )}
+                
               </Box>
             </Box>
           </Box>
@@ -102,6 +108,7 @@ function Answer() {
             pad="1em"
             style={{
               height: "auto",
+              minWidth: "400px",
               width: "50%",
             }}
           >

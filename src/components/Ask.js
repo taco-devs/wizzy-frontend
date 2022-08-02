@@ -66,6 +66,7 @@ function Ask() {
         background="#2e3138"
         elevation="0"
         style={{
+          minWidth: '400px',
           width: "60%",
         }}
         pad="1em"

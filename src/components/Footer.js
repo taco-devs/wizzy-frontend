@@ -8,7 +8,7 @@ import { BladesVertical } from "grommet-icons";
 const Footer = function (props) {
 
   return (
-    <Box background="#535865" pad="0 10px 10px 0" align="end" style={{position: 'absolute', bottom: 0, right: 0}}>
+    <Box margin="5px" pad="0 0 5px 0" align="end">
         <Text>Created by <Anchor target="_blank" href="https://twitter.com/Sentpiqe">Sentpiqe</Anchor> V0.1</Text>
     </Box>
   );

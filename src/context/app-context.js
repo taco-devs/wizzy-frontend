@@ -5,6 +5,7 @@ import axios from "axios";
 export const AppContext = createContext();
 
 // Axios Initializer
+console.log('process', process.env)
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://wizzy-ai.herokuapp.com';
 axios.defaults.headers.common['auth-token'] = localStorage.getItem('auth-token') || null;
 

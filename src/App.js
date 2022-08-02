@@ -36,7 +36,7 @@ function App() {
             <AppBar />
             <Box direction="row" flex>
               <SideBar />
-              <Box flex direction="column" style={{overflow: 'auto'}}>
+              <Box background="#2e3138" flex direction="column" style={{overflow: 'auto'}}>
                 <Routes>
                   <Route path="/" element={<Landing />}></Route>
                   <Route

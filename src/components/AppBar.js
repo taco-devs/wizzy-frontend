@@ -2,6 +2,7 @@ import { Box, Heading, Anchor, Button, Menu, Image, Text } from "grommet";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useLayoutEffect } from "react";
 import { AppContext } from "../context/app-context";
+import { isMobile } from 'react-device-detect';
 
 import { BladesVertical } from "grommet-icons";
 
@@ -83,7 +84,7 @@ const AppBar = function (props) {
           </Link>
         </Box>
       ) : (
-        <Box flex direction="row" align="center" justify="end">
+        <Box flex direction={"row"} align="center" justify="end">
           <Box direction="row" align="center" justify="center">
             <Text>
               {state.account && numberWithCommas(state.account.balance)}
@@ -93,8 +94,11 @@ const AppBar = function (props) {
           <Menu
             dropBackground={{ color: "#2e3138", opacity: "weak" }}
             dropAlign={{ top: "top", bottom: "bottom", left: "left" }}
-            label={state.account ? state.account.username : ""}
+            label={isMobile ? '' : (state.account ? state.account.username : "")}
             items={[
+              {
+                label: 'Profile'
+              },
               {
                 label: "Logout",
                 onClick: () => {
