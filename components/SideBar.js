@@ -1,15 +1,13 @@
 import { Box, Collapsible, Text } from "grommet";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../contexts/app-context";
+import { useAuth } from "../contexts/auth-context";
 import { QuestionPreview } from "../components";
 import { isMobile } from 'react-device-detect';
 
 const SideBar = function (props) {
   const [appState, appDispatch] = useContext(AppContext);
-
-  /* useEffect(() => {
-      getAccountQuestions();
-  }, [appState.isAuth]); */
+  const { auth } = useAuth();
 
   // Login Effect
   const getAccountQuestions = async () => {
@@ -30,7 +28,7 @@ const SideBar = function (props) {
   return (
     <Collapsible
       direction="horizontal"
-      open={appState.isAuth && appState.showSideBar}
+      open={auth.status === 'SIGNED_IN' && appState.showSideBar}
     >
       <Box
         width="medium"

@@ -25,25 +25,8 @@ const AppBar = function (props) {
   const [state, dispatch] = useContext(AppContext);
   const { auth, logout } = useAuth();
 
-  /* useEffect(() => {
-    getAccount();
-  }, [state.isAuth]); */
-
-/*   const getAccount = async () => {
-    state.axios
-      .get("/accounts/me")
-      .then((res) => {
-        dispatch({
-          type: "SET_ACCOUNT",
-          payload: res.data.data,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
- */
   const toggleSideBar = async () => {
+    console.log('toggle')
     dispatch({
       type: "TOGGLE_SIDEBAR",
     });
