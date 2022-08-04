@@ -52,14 +52,14 @@ const SideBar = function (props) {
                 <Heading style={{color: "#6FFFB0" }} level="3">My Questions</Heading>
               </Box>
             </Link>
-            <Link href="/">
+            {/* <Link href="/">
               <Box margin="0.5em 1.5em 0.5em 0">
                 <Heading level="3">Settings</Heading>
               </Box>
-            </Link>
-            <Link href="/">
+            </Link> */}
+            <Link href="/credits">
               <Box margin="0.5em 1.5em 0.5em 0">
-                <Heading level="3">Add Credits</Heading>
+                <Heading level="3" style={{color: "#6FFFB0" }}>Add Credits</Heading>
               </Box>
             </Link>
           </Box>
