@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/auth-context";
 import { isMobile } from "react-device-detect";
 
 import { BladesVertical } from "grommet-icons";
+import Link from "next/link";
 
 const AppBarContainer = (props) => (
   <Box
@@ -26,7 +27,7 @@ const AppBar = function (props) {
   const { auth, logout } = useAuth();
 
   const toggleSideBar = async () => {
-    console.log('toggle')
+    console.log("toggle");
     dispatch({
       type: "TOGGLE_SIDEBAR",
     });
@@ -42,14 +43,29 @@ const AppBar = function (props) {
         {auth.status === "SIGNED_IN" && (
           <Box flex direction="row" align="center">
             <Button icon={<BladesVertical />} onClick={() => toggleSideBar()} />
-            <Anchor label="Ask" color="#149414" />
+
+            <Link href="/ask">
+              <Heading
+                style={{ color: "#6FFFB0", cursor: "pointer" }}
+                level="3"
+                margin="none"
+              >
+                Ask
+              </Heading>
+            </Link>
           </Box>
         )}
       </Box>
       <Box flex direction="row" justify="center">
-        <Heading level="3" margin="none">
-          <Anchor href="/">Wizzy AI</Anchor>
-        </Heading>
+        <Link href="/">
+          <Heading
+            level="3"
+            margin="none"
+            style={{ color: "white", cursor: "pointer" }}
+          >
+            Wizzy AI
+          </Heading>
+        </Link>
       </Box>
 
       {auth.status === "SIGNED_IN" ? (
@@ -60,25 +76,19 @@ const AppBar = function (props) {
             </Text>
             <Image height="40px" src={"/assets/wizzy_credit.png"} />
           </Box>
-          <Menu
-            dropBackground={{ color: "#2e3138", opacity: "weak" }}
-            dropAlign={{ top: "top", bottom: "bottom", left: "left" }}
-            label={isMobile ? "" : auth.user ? auth.user.username : ""}
-            items={[
-              {
-                label: "Profile Settings",
-              },
-              {
-                label: "Logout",
-                onClick: logout
-              }
-            ]}
-          />
           {/* <Anchor label="Logout" color="#149414" onClick={() => onLogout()} /> */}
         </Box>
       ) : (
         <Box flex direction="row" align="end" justify="end">
-          <Anchor label="Sign In" color="#149414" href="/login" />
+          <Link href="/login">
+            <Heading
+              level="3"
+              margin="none"
+              style={{ color: "#6FFFB0", cursor: "pointer" }}
+            >
+              Login
+            </Heading>
+          </Link>
         </Box>
       )}
     </AppBarContainer>

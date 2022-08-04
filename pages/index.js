@@ -11,8 +11,7 @@ import {
 } from "grommet";
 
 import { Chat } from "grommet-icons";
-// import { Link } from "react-router-dom";
-import Spritesheet from "react-responsive-spritesheet";
+
 
 export default function HomePage() {
   return (
@@ -30,7 +29,7 @@ export default function HomePage() {
           }}
         >
           <Box height="small" width="small">
-            <Image src={"/assets/wizzy.png"} />
+            <Image height="200" width="200" src={"/assets/wizzy.png"} />
           </Box>
           <Heading level="3" margin="small">
             Hello, I'm Wizzy
@@ -39,37 +38,37 @@ export default function HomePage() {
             margin="small"
             pad="1em"
             border={{
-              color: "#149414",
+              color: "#6FFFB0",
               size: "small",
               side: "horizontal",
               margin: "1em",
             }}
           >
             <Text margin="xxsmall">
-              <b style={{ color: "#149414" }}>{"> "}</b>
+              <b style={{ color: "#6FFFB0" }}>{"> "}</b>
               {"Wizzy loves Wisdom."}
             </Text>
             <Paragraph margin="xxsmall">
-              <b style={{ color: "#149414" }}>{"> "}</b>
+              <b style={{ color: "#6FFFB0" }}>{"> "}</b>
               {"Wizzy loves Philosophy"}
             </Paragraph>
             <Paragraph margin="xxsmall">
-              <b style={{ color: "#149414" }}>{"> "}</b>
+              <b style={{ color: "#6FFFB0" }}>{"> "}</b>
               {"Wizzy loves Complex Topics"}
             </Paragraph>
             <Paragraph margin="xxsmall">
-              <b style={{ color: "#149414" }}>{"> "}</b>
+              <b style={{ color: "#6FFFB0" }}>{"> "}</b>
               {"Wizzy loves Neutrality"}
             </Paragraph>
             <Paragraph margin="xxsmall">
-              <b style={{ color: "#149414" }}>{"> "}</b>
+              <b style={{ color: "#6FFFB0" }}>{"> "}</b>
               {"Wizzy loves to answer Questions"}
             </Paragraph>
           </Box>
           <Box>
               <Button
                 primary
-                color="#149414"
+                color="#6FFFB0"
                 reverse
                 size="large"
                 label="Ask Me"

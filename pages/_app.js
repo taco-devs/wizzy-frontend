@@ -8,6 +8,9 @@ import { AuthProvider, getUser } from "../contexts/auth-context";
 
 const theme = {
   global: {
+    background: {
+      color: '#2e3138'
+    },
     font: {
       family: "Chakra Petch",
       size: "18px",
@@ -26,15 +29,15 @@ const MyApp = ({ Component, pageProps, auth }) => {
       <Grommet theme={theme} full>
         <AuthProvider myAuth={auth}>
           <AppContextProvider>
-            <Box fill>
+            <Box fill >
               <AppBar />
-              <Box direction="row" flex>
+              <Box direction="row" flex  background="#2e3138">
                 <SideBar />
                 <Box
-                  background="#2e3138"
                   flex
+                  background="#2e3138"
                   direction="column"
-                  style={{ overflow: "auto" }}
+                  style={{ overflow: "auto", height: 'auto' }}
                 >
                   <Component {...pageProps} />
                 </Box>

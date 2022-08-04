@@ -1,13 +1,15 @@
-import { Box, Collapsible, Text } from "grommet";
+import { Anchor, Box, Collapsible, Text, Heading } from "grommet";
+import { Logout } from "grommet-icons";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../contexts/app-context";
 import { useAuth } from "../contexts/auth-context";
 import { QuestionPreview } from "../components";
-import { isMobile } from 'react-device-detect';
+import { isMobile } from "react-device-detect";
+import Link from "next/link";
 
 const SideBar = function (props) {
   const [appState, appDispatch] = useContext(AppContext);
-  const { auth } = useAuth();
+  const { auth, logout } = useAuth();
 
   // Login Effect
   const getAccountQuestions = async () => {
@@ -28,7 +30,7 @@ const SideBar = function (props) {
   return (
     <Collapsible
       direction="horizontal"
-      open={auth.status === 'SIGNED_IN' && appState.showSideBar}
+      open={auth.status === "SIGNED_IN" && appState.showSideBar}
     >
       <Box
         width="medium"
@@ -37,19 +39,37 @@ const SideBar = function (props) {
         align="center"
         justify="center"
         style={{
-          overflowY: "scroll",
+          overflowY: "auto",
           direction: "rtl",
           height: "100%",
+          width: "250px",
         }}
       >
-        <Box fill align="center" justify="center" style={{margin: isMobile ? '15em 0 0 0' : '8em 0 0 0'}}>
-          {appState.questionsHistory < 1 && (
-            <Text>You'll see your questions here</Text>
-          )}
-          {appState.questionsHistory &&
-            appState.questionsHistory.map((question) => {
-              return <QuestionPreview question={question} />;
-            })}
+        <Box flex fill align="start" justify="start">
+          <Box flex fill>
+            <Link href={`/account/${auth?.user?.username}`}>
+              <Box margin="0.5em 1.5em 0.5em 0">
+                <Heading style={{color: "#6FFFB0" }} level="3">My Questions</Heading>
+              </Box>
+            </Link>
+            <Link href="/">
+              <Box margin="0.5em 1.5em 0.5em 0">
+                <Heading level="3">Settings</Heading>
+              </Box>
+            </Link>
+            <Link href="/">
+              <Box margin="0.5em 1.5em 0.5em 0">
+                <Heading level="3">Add Credits</Heading>
+              </Box>
+            </Link>
+          </Box>
+          <Box flex fill justify="end">
+            <Anchor onClick={logout}>
+              <Box margin="0.5em 1.5em 0.5em 0">
+                <Heading level="3">Logout</Heading>
+              </Box>
+            </Anchor>
+          </Box>
         </Box>
       </Box>
     </Collapsible>

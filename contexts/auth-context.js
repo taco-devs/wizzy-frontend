@@ -13,6 +13,7 @@ export const getUser = async (ctx) => {
       withCredentials: true,
     })
     .then((response) => {
+       //  console.log(response.data)
       if (response.data) {
         return { status: "SIGNED_IN", user: response.data.data };
       } else {

@@ -55,7 +55,7 @@ function SignUp() {
         <Heading level="3" margin="small">
           Sign Up
         </Heading>
-        <Box margin="small">
+        <Box margin="small" style={{width:'100%'}}>
           <Form
             value={form}
             onChange={(nextValue) => setForm(nextValue)}
@@ -81,22 +81,24 @@ function SignUp() {
             </FormField>
           </Form>
         </Box>
-        <Box>
+        <Box style={{width:'100%'}}>
           <Button
             primary
-            color="#149414"
+            color="#6FFFB0"
             reverse
             size="large"
             label="Sign Up"
-            margin="medium"
+            margin="1em 1em 0 1em"
             onClick={() => onSignUp()}
           />
         </Box>
-        <Box>
+        <Box style={{width:'100%'}}>
           <Button
+            
             primary
             color="#1DA1F2"
             reverse
+            margin="1em 1em 0 1em"
             size="large"
             label="Signup with Twitter"
             style={{color: 'white'}}

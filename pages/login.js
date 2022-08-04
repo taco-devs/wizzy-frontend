@@ -17,26 +17,10 @@ import { AppContext } from "../contexts/app-context";
 import { useAuth } from "../contexts/auth-context";
 
 function Login() {
-  const { login, register } = useAuth()
+  const { login, register } = useAuth();
   const [form, setForm] = useState({});
 
   const [appState, dispatch] = useContext(AppContext);
-
-  // Login Effect
-  /* const onLogin = async () => {
-    await appState.axios
-      .post("/accounts/login", form)
-      .then(function (response) {
-        const { token } = response.data.data;
-        dispatch({
-          type: "SET_TOKEN",
-          payload: token,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }; */
 
   // Login Effect
   const onTwitterLogin = async () => {
@@ -60,13 +44,13 @@ function Login() {
           minWidth: 370,
         }}
       >
-        <Box height="small" width="small">
+        <Box height="small" width="small" >
           <Image fit="cover" src={"/assets/wizzy.png"} />
         </Box>
         <Heading level="3" margin="small">
           Log In
         </Heading>
-        <Box margin="small">
+        <Box style={{width:'100%', tabIndex: -1}}>
           <Form
             value={form}
             onChange={(nextValue) => setForm(nextValue)}
@@ -85,20 +69,21 @@ function Login() {
             </FormField>
           </Form>
         </Box>
-        <Box flex>
+        <Box flex style={{width:'100%'}}>
           <Button
             primary
-            color="#149414"
+            color="#6FFFB0"
             reverse
             size="large"
             label="Login"
-            margin="medium"
+            margin="1em 1em 0 1em"
             onClick={() => login(form)}
           />
         </Box>
-        <Box>
+        <Box style={{width:'100%'}}>
           <Button
             primary
+            margin="1em 1em 0 1em"
             color="#1DA1F2"
             reverse
             size="large"
