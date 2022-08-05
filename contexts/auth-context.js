@@ -1,9 +1,38 @@
 import api from "./api";
-import React, { createContext } from "react";
+import React, { createContext, useReducer } from "react";
 import router from "next/router";
 import axios from "axios";
 
+const initialState = {
+  error: null,
+  loading: false,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_LOADING":
+        return {
+            ...state,
+            error: false,
+            loading: true,
+        }
+    case "SET_ERROR":
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case "DISMISS": 
+      return {
+          ...initialState
+      }
+    default:
+      throw new Error();
+  }
+};
+
 const AuthContext = createContext();
+
 export const getUser = async (ctx) => {
   return await api
     .get(`/auth/token`, {
@@ -13,7 +42,7 @@ export const getUser = async (ctx) => {
       withCredentials: true,
     })
     .then((response) => {
-       //  console.log(response.data)
+      //  console.log(response.data)
       if (response.data) {
         return { status: "SIGNED_IN", user: response.data.data };
       } else {
@@ -24,10 +53,13 @@ export const getUser = async (ctx) => {
       return { status: "SIGNED_OUT", user: null };
     });
 };
+
 export const AuthProvider = (props) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const auth = props.myAuth || { status: "SIGNED_OUT", user: null };
 
   const login = async (form) => {
+    dispatch({type: 'SET_LOADING'});
     // Use any auth service methods here
     return await api({
       method: "post",
@@ -37,9 +69,14 @@ export const AuthProvider = (props) => {
     })
       .then(() => {
         router.push("/");
+        dispatch({type: 'DISMISS'});
         console.log("user signed in");
       })
       .catch((error) => {
+        dispatch({
+          type: "SET_ERROR",
+          payload: "Invalid login",
+        });
         console.error("Incorrect email or password entered.");
       });
   };
@@ -53,7 +90,7 @@ export const AuthProvider = (props) => {
     })
       .then(function (response) {
         router.push("/");
-        alert('We send you an email with a verification code')
+        alert("We send you an email with a verification code");
         console.log("user registered");
       })
       .catch(function (error) {
@@ -63,13 +100,13 @@ export const AuthProvider = (props) => {
 
   const logout = async () => {
     return await api({
-        method: "get",
-        url: `/auth/logout`,
-        withCredentials: true,
-      })
+      method: "get",
+      url: `/auth/logout`,
+      withCredentials: true,
+    })
       .then(() => {
-            console.log('ok?')
-            router.push("/");
+        console.log("ok?");
+        router.push("/");
       })
       .catch((error) => {
         console.error(error.message);
@@ -78,7 +115,7 @@ export const AuthProvider = (props) => {
 
   return (
     <AuthContext.Provider
-      value={{ auth, logout, register, login }}
+      value={{ state, auth, logout, register, login, dispatch }}
       {...props}
     />
   );

@@ -10,6 +10,7 @@ import {
   Card,
   Text,
   Anchor,
+  Spinner
 } from "grommet";
 import React, { useState, useContext } from "react";
 import { Chat } from "grommet-icons";
@@ -17,22 +18,8 @@ import { AppContext } from "../contexts/app-context";
 import { useAuth } from "../contexts/auth-context";
 
 function Login() {
-  const { login, register } = useAuth();
+  const { login, state } = useAuth();
   const [form, setForm] = useState({});
-
-  const [appState, dispatch] = useContext(AppContext);
-
-  // Login Effect
-  const onTwitterLogin = async () => {
-    await appState.axios
-      .get("/auth/twitter")
-      .then(function (response) {
-        console.log("success");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
 
   return (
     <Box flex align="center" justify="center" background="#535865">
@@ -68,7 +55,20 @@ function Login() {
               />
             </FormField>
           </Form>
+          {state && state.error && (
+            <Box flex align="center" justify="center" style={{backgroundColor: '#FF4040', minHeight: '50px'}}>
+              <Text>{state.error}</Text>
+            </Box>
+            
+          )}
+          {state && state.loading && (
+            <Box flex align="center" justify="center">
+                <Spinner />
+            </Box>
+            
+          )}
         </Box>
+        
         <Box flex style={{width:'100%'}}>
           <Button
             primary
