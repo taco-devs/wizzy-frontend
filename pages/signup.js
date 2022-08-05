@@ -10,18 +10,15 @@ import {
   Card,
   Text,
   Anchor,
+  Spinner,
 } from "grommet";
 import React, { useState, useContext } from "react";
-import { AppContext } from "../contexts/app-context";
 import { useAuth } from '../contexts/auth-context';
 // import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [form, setForm] = useState({});
-  const { register } = useAuth();
-
-  const [state, dispatch] = useContext(AppContext);
-  // const navigate = useNavigate();
+  const { state, register } = useAuth();
 
   // Login Effect
   const onSignUp = async () => {
@@ -80,6 +77,18 @@ function SignUp() {
               <TextInput type="password" id="confirm-input-id" name="confirm" />
             </FormField>
           </Form>
+          {state && state.error && (
+            <Box flex align="center" justify="center" style={{backgroundColor: '#FF4040', minHeight: '50px'}}>
+              <Text>{state.error}</Text>
+            </Box>
+            
+          )}
+          {state && state.loading && (
+            <Box flex align="center" justify="center">
+                <Spinner />
+            </Box>
+            
+          )}
         </Box>
         <Box style={{width:'100%'}}>
           <Button

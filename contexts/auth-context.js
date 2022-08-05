@@ -82,6 +82,7 @@ export const AuthProvider = (props) => {
   };
 
   const register = async (form) => {
+    dispatch({type: 'SET_LOADING'});
     return await api({
       method: "post",
       url: `/auth/register`,
@@ -91,9 +92,14 @@ export const AuthProvider = (props) => {
       .then(function (response) {
         router.push("/");
         alert("We send you an email with a verification code");
+        dispatch({type: 'DISMISS'});
         console.log("user registered");
       })
       .catch(function (error) {
+        dispatch({
+            type: "SET_ERROR",
+            payload: "Invalid signup",
+          });
         console.error(error.message);
       });
   };
