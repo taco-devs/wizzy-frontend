@@ -1,6 +1,5 @@
 import api from "./api";
 import React, { createContext, useReducer } from "react";
-import { setCookie, getCookie, deleteCookie } from "cookies-next";
 import router from "next/router";
 import axios from "axios";
 
@@ -35,6 +34,7 @@ const reducer = (state, action) => {
 const AuthContext = createContext();
 
 export const getUser = async (ctx) => {
+    console.log(ctx?.req?.headers)
   return await api
     .get(`/auth/token`, {
       headers: ctx?.req?.headers?.cookie
@@ -43,9 +43,9 @@ export const getUser = async (ctx) => {
       withCredentials: true,
     })
     .then((response) => {
-      setCookie('session', response.data.data.cookie.session);
+      //  console.log(response.data)
       if (response.data) {
-        return { status: "SIGNED_IN", user: response.data.data.user };
+        return { status: "SIGNED_IN", user: response.data.data };
       } else {
         return { status: "SIGNED_OUT", user: null };
       }
@@ -68,9 +68,7 @@ export const AuthProvider = (props) => {
       data: form,
       withCredentials: true,
     })
-      .then((res) => {
-        const {session} = res.data.cookies;
-        setCookie('session', session);
+      .then(() => {
         router.push("/");
         dispatch({type: 'DISMISS'});
         console.log("user signed in");
@@ -114,7 +112,6 @@ export const AuthProvider = (props) => {
       withCredentials: true,
     })
       .then(() => {
-        deleteCookie('session');
         console.log("ok?");
         router.push("/");
       })
