@@ -29,6 +29,7 @@ export async function getServerSideProps(context) {
   const questions = await api({
     method: "get",
     url: `/accounts/${slug}/questions`,
+    withCredentials: true,
   })
     .then(function (response) {
       const { data } = response.data;
