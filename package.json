@@ -24,9 +24,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "start": "next start -p $PORT",
+    "start": "next start",
     "build": "next build",
-    "heroku-postbuild": "npm run build",
     "test": "next test",
     "eject": "next eject"
   },
