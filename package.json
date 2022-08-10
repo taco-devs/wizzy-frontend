@@ -24,7 +24,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "build": "next build",
     "test": "next test",
     "eject": "next eject"
