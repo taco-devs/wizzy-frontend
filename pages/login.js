@@ -16,10 +16,19 @@ import React, { useState, useContext } from "react";
 import { Chat } from "grommet-icons";
 import { AppContext } from "../contexts/app-context";
 import { useAuth } from "../contexts/auth-context";
+import { useRouter } from "next/router";
 
 function Login() {
-  const { login, state } = useAuth();
+  const { login, state, auth } = useAuth();
   const [form, setForm] = useState({});
+  const router = useRouter();
+
+  React.useEffect(() => {
+    // checks if the user is authenticated
+    auth.status === "SIGNED_IN"
+    ? router.push("/ask")
+    : router.push("/login");
+  }, []);
 
   return (
     <Box flex align="center" justify="center" background="#535865">

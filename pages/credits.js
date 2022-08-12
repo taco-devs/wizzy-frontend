@@ -18,7 +18,7 @@ export default function HomePage() {
     <Box flex align="center" justify="center" background="#535865">
       <Paragraph>
         AskWizzy is currently in a closed beta if you want to test it please
-        contact <Link href="https://twitter.com/Sentpiqe" target="_blank"><Text style={{ color: "#6FFFB0", cursor: "pointer" }} >Sentpiqe</Text></Link> on
+        contact <Link href="https://twitter.com/tacodevs" target="_blank"><Text style={{ color: "#6FFFB0", cursor: "pointer" }} >tacodevs</Text></Link> on
         Twitter.
       </Paragraph>
 

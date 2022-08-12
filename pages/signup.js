@@ -15,10 +15,19 @@ import {
 import React, { useState, useContext } from "react";
 import { useAuth } from '../contexts/auth-context';
 // import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 function SignUp() {
   const [form, setForm] = useState({});
-  const { state, register } = useAuth();
+  const { state, register, auth } = useAuth();
+  const router = useRouter();
+
+  React.useEffect(() => {
+    // checks if the user is authenticated
+    auth.status === "SIGNED_IN"
+    ? router.push("/ask")
+    : router.push("/login");
+  }, []);
 
   // Login Effect
   const onSignUp = async () => {
@@ -35,6 +44,7 @@ function SignUp() {
 
     register(signup);
   };
+  
 
   return (
     <Box flex align="center" justify="center" background="#535865">

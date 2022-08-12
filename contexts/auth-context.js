@@ -34,7 +34,6 @@ const reducer = (state, action) => {
 const AuthContext = createContext();
 
 export const getUser = async (ctx) => {
-    console.log(ctx?.req?.headers)
   return await api
     .get(`/auth/token`, {
       headers: ctx?.req?.headers?.cookie
