@@ -11,14 +11,26 @@ import {
 import api from "../../contexts/api";
 import { isMobile } from "react-device-detect";
 import Link from "next/link";
+import SEO from "../../components/SEO";
 
+function getSEODescription(answers) {
+  const string = answers.map((answer) => answer.answer).join(" ");
+  return string.substring(0, 155) + "...";
+}
 
 function Answer(props) {
- 
-  const {question} = props;
+  const { question } = props;
 
   return (
     <Box flex style={{ minHeight: "auto" }}>
+      <SEO
+        url={`${process.env.REACT_APP_APP_URL}`}
+        openGraphType="website"
+        schemaType="article"
+        title={question.question}
+        description={getSEODescription(question.answers)}
+        image={`https://askwizzy.ai/assets/wizzy.png`}
+      />
       {question.question ? (
         <Box
           flex
@@ -37,7 +49,11 @@ function Answer(props) {
             <Box flex direction="row" align="end">
               <Box flex>
                 <Box margin="10px">
-                 <Link href={`/account/${question.account.username}`}><Text style={{ color: "#6FFFB0", cursor: 'pointer' }}>{question.account.username}</Text></Link> 
+                  <Link href={`/account/${question.account.username}`}>
+                    <Text style={{ color: "#6FFFB0", cursor: "pointer" }}>
+                      {question.account.username}
+                    </Text>
+                  </Link>
                 </Box>
 
                 <Card
@@ -52,11 +68,19 @@ function Answer(props) {
                   </Heading>
                 </Card>
               </Box>
-              <Box flex align="end" style={{ maxWidth: isMobile ? "85px" : "100%" }}>
+              <Box
+                flex
+                align="end"
+                style={{ maxWidth: isMobile ? "85px" : "100%" }}
+              >
                 {isMobile ? (
                   <Image src={"/assets/wizzy_64.png"} />
                 ) : (
-                  <Image src={"/assets/wizzy.png"} height="256px" width="256px"/>
+                  <Image
+                    src={"/assets/wizzy.png"}
+                    height="256px"
+                    width="256px"
+                  />
                 )}
               </Box>
             </Box>
@@ -124,7 +148,7 @@ export async function getServerSideProps(context) {
       alert("error creating question");
     });
 
-  return { props: {  question } };
+  return { props: { question } };
 }
 
 export default Answer;

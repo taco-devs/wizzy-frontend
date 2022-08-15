@@ -40,7 +40,6 @@ export async function getServerSideProps({ res }) {
   })
     .then(function (response) {
       const { data } = response;
-      console.log(response)
       return data;
     })
     .catch(function (error) {
@@ -49,8 +48,6 @@ export async function getServerSideProps({ res }) {
 
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(questions);
-
-  console.log(sitemap);
 
   res.setHeader("Content-Type", "text/xml");
   // we send the XML to the browser
