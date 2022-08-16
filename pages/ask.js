@@ -4,6 +4,7 @@ import {
   Heading,
   Paragraph,
   Image,
+  Text,
   Card,
   TextArea,
 } from "grommet";
@@ -29,7 +30,7 @@ function Ask() {
     // Get answer logic
     await api({
       method: "post",
-      url: '/questions',
+      url: "/questions",
       data: { question: value, author: "test@example.com" },
       withCredentials: true,
     })
@@ -95,17 +96,25 @@ function Ask() {
             onChange={(event) => setValue(event.target.value)}
           />
         </Box>
-        <Box pad="0 0 2em 0">
-          <Button
-            disabled={loading}
-            primary
-            color="#6FFFB0"
-            reverse
-            size="large"
-            label="Ask"
-            margin="medium"
-            onClick={() => getAnswer()}
-          />
+        <Box direction="row" align="center" pad="1em 0 1em 0" style={{width: '100%'}}>
+          <Box flex />
+          <Box flex>
+            <Button
+              disabled={loading}
+              primary
+              color="#6FFFB0"
+              reverse
+              size="large"
+              label="Ask"
+              margin="medium"
+              onClick={() => getAnswer()}
+            />
+          </Box>
+
+          <Box flex direction="row" align="center" justify="end">
+            <Text>100</Text>
+            <Image height="40px" src={"/assets/wizzy_credit.png"} />
+          </Box>
         </Box>
       </Card>
     </Box>

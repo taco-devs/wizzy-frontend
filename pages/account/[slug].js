@@ -1,4 +1,4 @@
-import { Box, Collapsible, Text } from "grommet";
+import { Box, Collapsible, Text, Heading } from "grommet";
 import { useContext, useEffect } from "react";
 // import { AppContext } from "../context/app-context";
 
@@ -8,11 +8,22 @@ import { isMobile } from "react-device-detect";
 import { QuestionPreview } from '../../components';
 
 const AccountQuestions = function (props) {
-
+  const { slug } = props;
   return (
-    <Box flex align="center" justify="center" background="#535865" style={{minHeight: 'auto'}}>
-      {props.questions && props.questions.length > 0 ? (
+    <Box flex align="center" justify="start" background="#535865" style={{minHeight: 'auto'}}>
+      <Box direction="row" justify="between" style={{minWidth: 700, margin: '1.5em 0 0.5em 0'}}>
         <Box flex>
+          <Heading level="3">{slug}</Heading>
+        </Box>
+        <Box flex align="end" justify="center">
+          {props.questions && (
+            <Text>{props.questions && props.questions.length} Questions</Text>
+          )}
+        </Box>
+      </Box>
+      <Box style={{minWidth: 700, height: '2px', backgroundColor: '#6FFFB0', margin: '0 0 1em 0'}}/>
+      {props.questions && props.questions.length > 0 ? (
+        <Box flex >
           {props.questions.map((question) => {
             return <QuestionPreview key={question.slug} question={question} />;
           })}
@@ -20,6 +31,7 @@ const AccountQuestions = function (props) {
       ) : (
         <Text>You'll see your questions here</Text>
       )}
+      <Box style={{minWidth: 700, height: '2px', backgroundColor: '#6FFFB0', margin: '1em 0 1em 0'}}/>
     </Box>
   );
 };
@@ -39,7 +51,7 @@ export async function getServerSideProps(context) {
       return { error };
     });
 
-  return { props: { questions } };
+  return { props: { questions, slug } };
 }
 
 export default AccountQuestions;
