@@ -38,15 +38,12 @@ function Ask() {
         const { data } = response;
         const question = data.result[0];
         const route = `/question/${question.slug}`;
-        /* appDispatch({
-            type: 'ADD_QUESTION',
-            payload: question,
-          }); */
         router.push(route);
       })
       .catch(function (error) {
-        alert("error creating question");
-        console.log(error);
+        alert("Insufficient credits");
+        setLoading(false);
+        router.push("/credits");
       });
   };
 
@@ -96,7 +93,12 @@ function Ask() {
             onChange={(event) => setValue(event.target.value)}
           />
         </Box>
-        <Box direction="row" align="center" pad="1em 0 1em 0" style={{width: '100%'}}>
+        <Box
+          direction="row"
+          align="center"
+          pad="1em 0 1em 0"
+          style={{ width: "100%" }}
+        >
           <Box flex />
           <Box flex>
             <Button
