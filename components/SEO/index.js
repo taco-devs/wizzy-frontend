@@ -8,7 +8,7 @@ const settings = {
     title: "AskWizzy",
     description: "Need Wisdom ? Ask Wizzy and solve your questions.",
     social: {
-      graphic: "https://askwizzy.ai/assets/wizzy.png",
+      graphic: "https://askwizzy.ai/assets/banner.png",
       twitter: "@tacodevs",
     },
   },

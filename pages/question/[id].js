@@ -29,7 +29,7 @@ function Answer(props) {
         schemaType="article"
         title={question.question}
         description={getSEODescription(question.answers)}
-        image={`https://askwizzy.ai/assets/wizzy.png`}
+        image={`https://askwizzy.ai/assets/banner.png`}
       />
       {question.question ? (
         <Box
