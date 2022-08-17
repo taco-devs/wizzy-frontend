@@ -57,7 +57,7 @@ const SideBar = function (props) {
                 <Heading level="3">Settings</Heading>
               </Box>
             </Link> */}
-            <Link href="/more-credits">
+            <Link href="/add-credits">
               <Box margin="0.5em 1.5em 0.5em 0">
                 <Heading level="3" style={{color: "#6FFFB0" }}>Add Credits</Heading>
               </Box>
