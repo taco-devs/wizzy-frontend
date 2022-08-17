@@ -17,20 +17,8 @@ const initialState = {
   error: null,
 };
 
-const login = (form) => {
-  axios
-    .post("/accounts/login", form)
-    .then(function (response) {
-      const { token } = response.data.data;
-      dispatch({
-        type: "SET_TOKEN",
-        payload: token,
-      });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
+
+
 
 const reducer = (state, action) => {
   switch (action.type) {

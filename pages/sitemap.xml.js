@@ -15,6 +15,9 @@ function generateSiteMap(questions) {
      <url>
      <loc>${process.env.REACT_APP_APP_URL}/signup</loc>
      </url>
+     <url>
+     <loc>${process.env.REACT_APP_APP_URL}/more-credits</loc>
+     </url>
      ${questions.map(({ slug }) => {
          return `
        <url>
