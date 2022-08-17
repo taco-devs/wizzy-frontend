@@ -7,42 +7,84 @@ import {
   Image,
   Card,
   FormField,
-  Text
+  Text,
 } from "grommet";
+import { useState } from "react";
 
 import { Chat } from "grommet-icons";
 import Link from "next/link";
 
 export default function HomePage() {
+  const [credits, setCredits] = useState(1000);
+
+  const increase = () => {
+    setCredits(credits + 500);
+  };
+
+  const decrease = () => {
+    if (credits <= 500) return;
+    setCredits(credits - 500);
+  };
+
+  const calcPayment = () => {
+    const CREDIT_1000_VALUE = 3; // 3 USD
+    return ((credits / 1000) * CREDIT_1000_VALUE).toFixed(2);
+  };
+
   return (
     <Box flex align="center" justify="center" background="#535865">
-      {/* <Paragraph>
-        AskWizzy is currently in a closed beta if you want to test it please
-        contact <Link href="https://twitter.com/tacodevs" target="_blank"><Text style={{ color: "#6FFFB0", cursor: "pointer" }} >tacodevs</Text></Link> on
-        Twitter.
-      </Paragraph>
-
-    <Paragraph>
-      Thanks for your interest!
-    </Paragraph> */}
+      <Heading>Add Credits</Heading>
       <Card
         align="center"
         background="#2e3138"
         elevation="0"
         style={{
-          minWidth: "400px",
+          minWidth: "375px",
           width: "60%",
         }}
-        pad="1em"
       >
-        <Paragraph>Choose the amount of credits</Paragraph>
         <Box direction="row" align="center">
-          <Box>
-            <Button style={{backgroundColor: '#6FFFB0', height: '50px', borderRadius: '50%', width: '50px', margin: '1em', color: 'red'}}><Text>-</Text></Button>
+          <Box flex>
+            <Button
+              primary
+              color="#6FFFB0"
+              reverse
+              size="large"
+              label="-"
+              margin="medium"
+              onClick={decrease}
+            />
           </Box>
-          <Heading>1,000</Heading>
-          <Box><Button>+</Button></Box>
+          <Box direction="row" justify="center" align="center">
+            <Heading>{credits.toLocaleString("en-En")}</Heading>
+            <Image height="50px" src={"/assets/wizzy_credit.png"} />
+          </Box>
+
+          <Box flex>
+            <Button
+              primary
+              color="#6FFFB0"
+              reverse
+              size="large"
+              label="+"
+              margin="medium"
+              onClick={increase}
+            />
+          </Box>
         </Box>
+        <Box flex>
+          <Heading level="2">Total ${calcPayment()} USD</Heading>
+        </Box>
+        <Box flex>
+            <Button
+              primary
+              color="#6FFFB0"
+              reverse
+              size="large"
+              label="Buy"
+              margin="medium"
+            />
+          </Box>
       </Card>
     </Box>
   );
