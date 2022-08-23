@@ -80,6 +80,7 @@ const SEO = (props) => {
   return (
     <Head>
       <title>{title} | AskWizzy</title>
+      <link rel="canonical" href={url} ></link>
       <meta name="description" content={description} />
       <meta itemprop="name" content={title} />
       <meta itemprop="description" content={description} />
