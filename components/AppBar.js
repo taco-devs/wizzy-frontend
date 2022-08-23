@@ -17,7 +17,7 @@ const AppBarContainer = (props) => (
     background="#2e3138"
     pad={{ left: "medium", right: "small", vertical: "small" }}
     elevation="medium"
-    style={{ zIndex: "1" }}
+    style={{ zIndex: "1", minHeight: '80px' }}
     {...props}
   />
 );
@@ -27,7 +27,6 @@ const AppBar = function (props) {
   const { auth, logout } = useAuth();
 
   const toggleSideBar = async () => {
-    console.log("toggle");
     dispatch({
       type: "TOGGLE_SIDEBAR",
     });
