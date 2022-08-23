@@ -71,10 +71,10 @@ function Answer(props) {
               <Box
                 flex
                 align="end"
-                style={{ maxWidth: isMobile ? "85px" : "100%" }}
+                style={{ maxWidth: isMobile ? "128px" : "100%" }}
               >
                 {isMobile ? (
-                  <Image src={"/assets/wizzy_64.png"} />
+                  <Image src={"/assets/wizzy.png"} height="100%" width="100%"/>
                 ) : (
                   <Image
                     src={"/assets/wizzy.png"}

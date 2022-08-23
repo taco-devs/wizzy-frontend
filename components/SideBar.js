@@ -11,21 +11,12 @@ const SideBar = function (props) {
   const [appState, appDispatch] = useContext(AppContext);
   const { auth, logout } = useAuth();
 
-  // Login Effect
-  const getAccountQuestions = async () => {
-    await appState.axios
-      .get("/accounts/my-questions")
-      .then(function (response) {
-        const data = response.data.data;
-        appDispatch({
-          type: "SET_QUESTIONS_HISTORY",
-          payload: data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  const toggleSideBar = async () => {
+    console.log('toggling')
+    appDispatch({
+      type: "TOGGLE_SIDEBAR",
+    })
+  }
 
   return (
     <Collapsible
@@ -47,8 +38,8 @@ const SideBar = function (props) {
       >
         <Box flex fill align="start" justify="start">
           <Box flex fill>
-            <Link href={`/account/${auth?.user?.username}`}>
-              <Box margin="0.5em 1.5em 0.5em 0">
+            <Link  href={`/account/${auth?.user?.username}`}>
+              <Box onClick={toggleSideBar} margin="0.5em 1.5em 0.5em 0">
                 <Heading style={{color: "#6FFFB0" }} level="3">My Questions</Heading>
               </Box>
             </Link>
@@ -58,13 +49,13 @@ const SideBar = function (props) {
               </Box>
             </Link> */}
             <Link href="/add-credits">
-              <Box margin="0.5em 1.5em 0.5em 0">
+              <Box onClick={toggleSideBar} margin="0.5em 1.5em 0.5em 0">
                 <Heading level="3" style={{color: "#6FFFB0" }}>Add Credits</Heading>
               </Box>
             </Link>
           </Box>
           <Box flex fill justify="end">
-            <Anchor onClick={logout}>
+            <Anchor  onClick={logout}>
               <Box margin="0.5em 1.5em 0.5em 0">
                 <Heading level="3">Logout</Heading>
               </Box>
