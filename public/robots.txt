@@ -1,6 +1,3 @@
-Sitemap: https://askwizzy.ai/sitemap.xml
-
+# Allow all crawlers
 User-agent: *
-Allow: /*
-
-Disallow: /api/*
+Allow: /
