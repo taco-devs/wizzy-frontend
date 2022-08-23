@@ -68,20 +68,8 @@ function Answer(props) {
                   </Heading>
                 </Card>
               </Box>
-              <Box
-                flex
-                align="end"
-                style={{ maxWidth: isMobile ? "128px" : "100%" }}
-              >
-                {isMobile ? (
-                  <Image src={"/assets/wizzy.png"} height="100%" width="100%"/>
-                ) : (
-                  <Image
-                    src={"/assets/wizzy.png"}
-                    height="256px"
-                    width="256px"
-                  />
-                )}
+              <Box flex align="end" style={{ width: "100%" }}>
+                <Image src={"/assets/wizzy.png"} style={{ maxWidth: "60%" }}/>
               </Box>
             </Box>
           </Box>
