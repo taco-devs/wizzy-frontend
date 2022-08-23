@@ -37,7 +37,7 @@ const MyApp = ({ Component, pageProps, auth }) => {
                   flex
                   background="#2e3138"
                   direction="column"
-                  style={{ overflow: "auto", height: 'auto' }}
+                  style={{ overflow: "auto", height: 'auto'}}
                 >
                   <Component {...pageProps} />
                 </Box>

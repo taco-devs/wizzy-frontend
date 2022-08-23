@@ -50,12 +50,11 @@ const AccountQuestions = function (props) {
         ) : (
           <Text>You'll see your questions here</Text>
         )}
-        <Box
+                <Box
           style={{
-            minWidth: 700,
             height: "2px",
             backgroundColor: "#6FFFB0",
-            margin: "1em 0 1em 0",
+            margin: "0 10px 1em 10px",
           }}
         />
       </Box>
