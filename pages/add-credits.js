@@ -68,7 +68,7 @@ export default function HomePage() {
         });
       })
       .catch(function (error) {
-        alert("Error");
+        alert(error);
         setLoading(false);
       });
   };
