@@ -29,7 +29,8 @@
     "start": "next start",
     "build": "next build",
     "test": "next test",
-    "eject": "next eject"
+    "eject": "next eject",
+    "deploy": "vercel && vercel --prod"
   },
   "eslintConfig": {
     "extends": [
