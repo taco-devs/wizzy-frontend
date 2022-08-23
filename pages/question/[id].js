@@ -44,7 +44,6 @@ function Answer(props) {
               height: "auto",
               minWidth: "400px",
               width: "50%",
-              margin: "1em"
             }}
           >
             <Box flex direction="row" align="end">
@@ -83,6 +82,7 @@ function Answer(props) {
               height: "auto",
               minWidth: "400px",
               width: "50%",
+              margin: "0 0 1.5em 0"
             }}
           >
             {question &&
