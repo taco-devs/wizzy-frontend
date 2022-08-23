@@ -44,6 +44,7 @@ function Answer(props) {
               height: "auto",
               minWidth: "400px",
               width: "50%",
+              margin: "1em"
             }}
           >
             <Box flex direction="row" align="end">
@@ -69,7 +70,7 @@ function Answer(props) {
                 </Card>
               </Box>
               <Box flex align="end" style={{ width: "100%" }}>
-                <Image src={"/assets/wizzy.png"} style={{ maxWidth: "60%" }}/>
+                <Image src={"/assets/wizzy.png"} style={{ maxWidth: "128px" }}/>
               </Box>
             </Box>
           </Box>
