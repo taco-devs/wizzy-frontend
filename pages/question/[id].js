@@ -24,7 +24,7 @@ function Answer(props) {
   return (
     <Box flex style={{ minHeight: "auto" }}>
       <SEO
-        url={`${process.env.REACT_APP_APP_URL}`}
+        url={`${process.env.REACT_APP_APP_URL}/question/${question.slug}`}
         openGraphType="website"
         schemaType="article"
         title={question.question}
