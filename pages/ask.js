@@ -102,6 +102,7 @@ function Ask() {
           <Box flex />
           <Box flex>
             <Button
+            alignSelf="center"
               disabled={loading}
               primary
               color="#6FFFB0"
