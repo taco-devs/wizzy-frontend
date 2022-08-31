@@ -15,13 +15,13 @@ const AccountQuestions = function (props) {
       align="center"
       justify="start"
       background="#535865" 
-      style={{ minHeight: "auto" }}
+      style={{ minHeight: "auto"}}
     >
       <Box>
         <Box
           direction="row"
           justify="between"
-          style={{ margin: "1.5em 10px 0.5em 10px" }}
+          style={{ margin: "1.5em 10px 0.5em 10px", minWidth: (isMobile ? '370px' : '650px'), maxWidth: '100%'  }}
         >
           <Box flex>
             <Heading level="3">{slug}</Heading>
@@ -48,7 +48,7 @@ const AccountQuestions = function (props) {
             })}
           </Box>
         ) : (
-          <Text>You'll see your questions here</Text>
+          <Text style={{margin: '0 1em 1em 1em'}} alignSelf="center">You'll see your questions here</Text>
         )}
                 <Box
           style={{

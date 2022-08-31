@@ -26,7 +26,7 @@ function SignUp() {
     // checks if the user is authenticated
     auth.status === "SIGNED_IN"
     ? router.push("/ask")
-    : router.push("/login");
+    : router.push("/signup");
   }, []);
 
   // Login Effect
