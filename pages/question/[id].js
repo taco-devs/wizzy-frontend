@@ -12,6 +12,7 @@ import api from "../../contexts/api";
 import { isMobile } from "react-device-detect";
 import Link from "next/link";
 import SEO from "../../components/SEO";
+import { Rating, Likes } from '../../components'
 
 function getSEODescription(answers) {
   const string = answers.map((answer) => answer.answer).join(" ");
@@ -37,7 +38,7 @@ function Answer(props) {
           align="center"
           justify="center"
           background="#535865"
-          pad="1em 0 1em 0"
+          pad="3em 0 1em 0"
         >
           <Box
             style={{
@@ -48,7 +49,7 @@ function Answer(props) {
           >
             <Box flex direction="row" align="end">
               <Box flex>
-                <Box margin="10px">
+                <Box margin="20px">
                   <Link href={`/account/${question.account.username}`}>
                     <Text style={{ color: "#6FFFB0", cursor: "pointer" }}>
                       {question.account.username}
@@ -56,20 +57,37 @@ function Answer(props) {
                   </Link>
                 </Box>
 
+               {/*  <Card
+                  width="100%"
+                  direction="row"
+                  align="center"
+                  justify="between"
+                  background="#5c6370"
+                  elevation="0"
+                  pad="0.5em 0.5em 1em 0.5em"
+                  margin="0 0 -1em 0"
+                >
+                  <Rating />
+                  <Likes />
+                </Card> */}
+              </Box>
+              <Box flex align="end" style={{ width: "100%", margin: '0 0 -0.25em 0' }}>
+                <Image src={"/assets/wizzy.png"} style={{ maxWidth: "128px" }}/>
+              </Box>
+            </Box>
+            <Box flex direction="row" align="end">
+              <Box flex>
                 <Card
                   align="center"
                   background="#40454F"
                   elevation="0"
                   pad="1em 1em 2em 1em"
-                  margin="0 0 -1em 0"
+                  margin="-2em 0 -1em 0"
                 >
                   <Heading level="4" margin="small">
                     {question && question.question}
                   </Heading>
                 </Card>
-              </Box>
-              <Box flex align="end" style={{ width: "100%" }}>
-                <Image src={"/assets/wizzy.png"} style={{ maxWidth: "128px" }}/>
               </Box>
             </Box>
           </Box>
