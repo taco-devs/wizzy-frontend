@@ -2,7 +2,7 @@ import { Anchor, Box, Collapsible, Text, Heading } from "grommet";
 import { Favorite } from "grommet-icons";
 import Link from "next/link";
 
-const Likes = function (props) {
+const Comments = function (props) {
 
   return (
       <Box direction="row" pad="5px">
@@ -12,4 +12,4 @@ const Likes = function (props) {
   );
 };
 
-export default Likes;
+export default Comments;

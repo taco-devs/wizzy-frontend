@@ -13,6 +13,7 @@ import { isMobile } from "react-device-detect";
 import Link from "next/link";
 import SEO from "../../components/SEO";
 import { Rating, Likes } from '../../components'
+import { useAuth } from "../../contexts/auth-context";
 
 function getSEODescription(answers) {
   const string = answers.map((answer) => answer.answer).join(" ");
@@ -21,6 +22,7 @@ function getSEODescription(answers) {
 
 function Answer(props) {
   const { question } = props;
+  const { auth, logout } = useAuth();
 
   return (
     <Box flex style={{ minHeight: "auto" }}>
@@ -82,8 +84,9 @@ function Answer(props) {
                   background="#40454F"
                   elevation="0"
                   pad="1em 1em 2em 1em"
-                  margin="-2em 0 -1em 0"
+                  margin="0 0 -1em 0"
                 >
+                  <Likes />
                   <Heading level="4" margin="small">
                     {question && question.question}
                   </Heading>

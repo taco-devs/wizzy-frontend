@@ -43,7 +43,7 @@ function Ask() {
       .catch(function (error) {
         alert("Insufficient credits");
         setLoading(false);
-        router.push("/credits");
+        router.push("/add-credits");
       });
   };
 
